@@ -1,40 +1,105 @@
-<div class="container md-12">
-  <div class="row justify-content-center">
-    <div class="d-flex justify-content-center align-items-center">
-      <!--Directiva ngIf, si existe el Pokèmon en el componente Pokedexmostramos la tarjeta-->
-      <div *ngIf="pokemon">
-        <div
-          class="card bg-image border border-3 border-dark"
-          style="
-            width: 18rem;
-            background-image: url('https://w.wallha.com/ws/14/ogOdyeuZ.png');
-          "
-        >
-          <!-- Mostramos datos de pokemon, imagen haciendo referencia a la propiedad del objeto 
-            para sacar src, y el resto por interpolación-->
+<div class="d-flex justify-content-center align-items-center">
+  <div *ngIf="pokemon">
+    <div
+      class="card bg-image border border-3 border-dark"
+      style="
+        width: 18rem;
+        background-image: url('https://w.wallha.com/ws/14/ogOdyeuZ.png');
+      "
+    >
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [class.active]="currentTab === 'tab1'"
+              (click)="showTab('tab1')"
+              >Datos</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [class.active]="currentTab === 'tab2'"
+              (click)="showTab('tab2')"
+              >Tipo</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [class.active]="currentTab === 'tab3'"
+              (click)="showTab('tab3')"
+              >Ataques</a
+            >
+          </li>
+        </ul>
+      </div>
+      <img
+        class="card-img-top img-rounded border border-5 rounded-circle bg-white"
+        [src]="pokemon.sprites.front_default"
+        alt="..."
+        style="margin: 5%; max-width: 90%"
+        ng
+      />
 
-          <img
-            class="card-img-top img-rounded border border-5 rounded-circle bg-white"
-            [src]="pokemon.sprites.front_default"
-            alt="..."
-            style="margin: 5%; max-width: 90%"
-          />
-          <div class="card-body bg-primary border rounded-3">
-            <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
-            <!--Usamos un pipe peestablecido para mostrar la primera letra en MAYS-->
-            <p class="card-text">ID: {{ pokemon.id }}</p>
-          </div>
-          <ul class="list-group list-group-flush bg-black">
-            <li class="list-group-item bg-warning text-bold">
-              Altura: {{ pokemon.height }}
-            </li>
-            <li class="list-group-item bg-warning">
-              Peso: {{ pokemon.weight }}
-            </li>
-          </ul>
-          <div class="card-body text-white fst-light fs-6 text-end lh-1">
-            Pokedex by SPL
-          </div>
+      <div *ngIf="currentTab === 'tab1'">
+        <div class="card-body bg-primary border rounded-3">
+          <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
+
+          <p class="card-text">ID: {{ pokemon.id }}</p>
+        </div>
+
+        <ul class="list-group list-group-flush bg-black">
+          <li class="list-group-item bg-warning text-bold">
+            Altura: {{ pokemon.height | decimeterToMeters }}
+          </li>
+          <li class="list-group-item bg-warning">
+            Peso: {{ pokemon.weight | hectogramToKilogram }}
+          </li>
+        </ul>
+        <div class="card-body text-white fst-light fs-6 text-end lh-1">
+          Pokedex by SPL
+        </div>
+
+        <!--CONTENIDO TAB1-->
+      </div>
+      <div *ngIf="currentTab === 'tab2'">
+        <div class="card-body bg-primary border rounded-3">
+          <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
+
+          <p class="card-text">ID: {{ pokemon.id }}</p>
+        </div>
+
+        <ul class="list-group list-group-flush bg-black">
+          <li
+            class="list-group-item bg-warning text-bold"
+            *ngFor="let type of types"
+          >
+            Tipo: {{ type.type.name | titlecase }}
+          </li>
+        </ul>
+        <div class="card-body text-white fst-light fs-6 text-end lh-1">
+          Pokedex by SPL
+        </div>
+      </div>
+      <div *ngIf="currentTab === 'tab3'">
+        <div class="card-body bg-primary border rounded-3">
+          <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
+
+          <p class="card-text">ID: {{ pokemon.id }}</p>
+        </div>
+
+        <ul class="list-group list-group-flush bg-black">
+          <li
+            class="list-group-item bg-warning text-bold"
+            *ngFor="let move of moves"
+          >
+            Ataque: {{ move.ability.name | titlecase }}
+          </li>
+        </ul>
+        <div class="card-body text-white fst-light fs-6 text-end lh-1">
+          Pokedex by SPL
         </div>
       </div>
     </div>

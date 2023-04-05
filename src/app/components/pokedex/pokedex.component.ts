@@ -14,12 +14,25 @@ export class PokedexComponent {
     name: '',
     height: 0,
     weight: 0,
+    moves: [],
+    types: [],
     sprites: { front_default: '' },
   };
 
   pokemonNameOrId: string = 'pikachu';
 
+  translatethis: string = 'Hola amigo, te quiero mucho';
+
+  moves: any[] = [];
+  types: any[] = [];
+
   constructor(private pokeService: PokeServiceService) {}
+
+  currentTab = 'tab1'; // Valor por defecto para la pestaña activa
+
+  showTab(tabName: string) {
+    this.currentTab = tabName;
+  }
 
   //Al iniciar, obtener el pokemon por defecto
   ngOnInit() {
@@ -30,9 +43,15 @@ export class PokedexComponent {
   //obtenido desde template, nos suscribimos para fijar un nuevo pokemon
   //que será mostrado en el template por interpolación.
   getPokemon(): void {
-    this.pokeService
-      .getPokemon(this.pokemonNameOrId)
-      .subscribe((pokemon) => (this.pokemon = pokemon));
+    this.pokeService.getPokemon(this.pokemonNameOrId).subscribe((pokemon) => {
+      this.pokemon = pokemon;
+      console.log(this.pokemon);
+      this.moves = pokemon.abilities;
+      console.log(this.moves);
+
+      this.types = pokemon.types;
+      console.log(this.types);
+    });
   }
 
   //Acción a realizar cuando pulsemos el botón del template
