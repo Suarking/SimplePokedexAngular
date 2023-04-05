@@ -1,0 +1,62 @@
+<div class="container md-12">
+  <div class="row justify-content-center">
+    <div class="d-flex justify-content-center align-items-center">
+      <!--Directiva ngIf, si existe el Pokèmon en el componente Pokedexmostramos la tarjeta-->
+      <div *ngIf="pokemon">
+        <div
+          class="card bg-image border border-3 border-dark"
+          style="
+            width: 18rem;
+            background-image: url('https://w.wallha.com/ws/14/ogOdyeuZ.png');
+          "
+        >
+          <!-- Mostramos datos de pokemon, imagen haciendo referencia a la propiedad del objeto 
+            para sacar src, y el resto por interpolación-->
+
+          <img
+            class="card-img-top img-rounded border border-5 rounded-circle bg-white"
+            [src]="pokemon.sprites.front_default"
+            alt="..."
+            style="margin: 5%; max-width: 90%"
+          />
+          <div class="card-body bg-primary border rounded-3">
+            <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
+            <!--Usamos un pipe peestablecido para mostrar la primera letra en MAYS-->
+            <p class="card-text">ID: {{ pokemon.id }}</p>
+          </div>
+          <ul class="list-group list-group-flush bg-black">
+            <li class="list-group-item bg-warning text-bold">
+              Altura: {{ pokemon.height }}
+            </li>
+            <li class="list-group-item bg-warning">
+              Peso: {{ pokemon.weight }}
+            </li>
+          </ul>
+          <div class="card-body text-white fst-light fs-6 text-end lh-1">
+            Pokedex by SPL
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container col-md-4 mt-4">
+  <!--Usamos directiva onsubmit para llamar a la función-->
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nameOrId" class="text-white text-bolder"
+        >Nombre o ID del Pokèmon:</label
+      ><!--Usamos ngModel con Banana in box para intercambiar datos de la id que buscamos con el template-->
+      <input
+        type="text"
+        class="form-control"
+        id="nameOrId"
+        name="nameOrId"
+        [(ngModel)]="pokemonNameOrId"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-dark mt-1">Buscar</button>
+  </form>
+</div>
