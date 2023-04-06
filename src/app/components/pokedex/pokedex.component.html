@@ -13,6 +13,7 @@
           class="nav nav-tabs bg-dark border border-2 rounded border-primary card-header-tabs"
         >
           <li class="nav-item">
+            <!--Cambia valor de la variable currentTab cl hacer clic en pestañas-->
             <a
               class="nav-link fw-bold text-primary"
               [class.active]="currentTab === 'tab1'"
@@ -46,8 +47,9 @@
         style="margin: 5%; max-width: 90%"
         ng
       />
-
+      <!--Dependiendo del valor de currentTab, usando ngIf mostramos un contenido u otro-->
       <div *ngIf="currentTab === 'tab1'">
+        <!--CONTENIDO TAB1-->
         <div class="card-body bg-primary border rounded-3">
           <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
 
@@ -65,10 +67,9 @@
         <div class="card-body text-white fst-light fs-6 text-end lh-1">
           PoCHedex by SPL
         </div>
-
-        <!--CONTENIDO TAB1-->
       </div>
       <div *ngIf="currentTab === 'tab2'">
+        <!--CONTENIDO TAB2-->
         <div class="card-body bg-primary border rounded-3">
           <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
 
@@ -111,4 +112,7 @@
     </div>
   </div>
 </div>
+<!--COMPONENTE HIJO-->
+<!--Se enlaza el método del hijo (propagarId) al pulsar el botón, ejecuta getNewPoke en el padre 
+pasándole el valor del edittext mediante un evento-->
 <app-form-pokedex (propagarId)="getNewPoke($event)"></app-form-pokedex>
