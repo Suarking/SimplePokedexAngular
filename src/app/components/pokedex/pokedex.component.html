@@ -1,9 +1,10 @@
-<div class="d-flex justify-content-center align-items-center">
+<div class="d-flex justify-content-center align-items-center mt-4">
   <div *ngIf="pokemon">
     <div
       class="card bg-image border border-3 border-dark"
       style="
-        width: 18rem;
+        width: 21rem;
+
         background-image: url('https://w.wallha.com/ws/14/ogOdyeuZ.png');
       "
     >
@@ -22,7 +23,8 @@
               class="nav-link"
               [class.active]="currentTab === 'tab2'"
               (click)="showTab('tab2')"
-              >Tipo</a
+            >
+              Tipo</a
             >
           </li>
           <li class="nav-item">
@@ -52,14 +54,14 @@
 
         <ul class="list-group list-group-flush bg-black">
           <li class="list-group-item bg-warning text-bold">
-            Altura: {{ pokemon.height | decimeterToMeters }}
+            <strong>Altura:</strong> {{ pokemon.height | decimeterToMeters }}
           </li>
           <li class="list-group-item bg-warning">
-            Peso: {{ pokemon.weight | hectogramToKilogram }}
+            <strong>Peso:</strong> {{ pokemon.weight | hectogramToKilogram }}
           </li>
         </ul>
         <div class="card-body text-white fst-light fs-6 text-end lh-1">
-          Pokedex by SPL
+          PoCHedex by SPL
         </div>
 
         <!--CONTENIDO TAB1-->
@@ -76,11 +78,11 @@
             class="list-group-item bg-warning text-bold"
             *ngFor="let type of types"
           >
-            Tipo: {{ type.type.name | titlecase }}
+            <strong>Tipo:</strong> {{ type.type.name | titlecase }}
           </li>
         </ul>
         <div class="card-body text-white fst-light fs-6 text-end lh-1">
-          Pokedex by SPL
+          PoCHedex by SPL
         </div>
       </div>
       <div *ngIf="currentTab === 'tab3'">
@@ -95,33 +97,16 @@
             class="list-group-item bg-warning text-bold"
             *ngFor="let move of moves"
           >
-            Ataque: {{ move.ability.name | titlecase }}
+            <strong>Ataque:</strong>
+
+            {{ move.ability.name | titlecase }}
           </li>
         </ul>
         <div class="card-body text-white fst-light fs-6 text-end lh-1">
-          Pokedex by SPL
+          PoCHedex by SPL
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="container col-md-4 mt-4">
-  <!--Usamos directiva onsubmit para llamar a la función-->
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="nameOrId" class="text-white text-bolder"
-        >Nombre o ID del Pokèmon:</label
-      ><!--Usamos ngModel con Banana in box para intercambiar datos de la id que buscamos con el template-->
-      <input
-        type="text"
-        class="form-control"
-        id="nameOrId"
-        name="nameOrId"
-        [(ngModel)]="pokemonNameOrId"
-        required
-      />
-    </div>
-    <button type="submit" class="btn btn-dark mt-1">Buscar</button>
-  </form>
-</div>
+<app-form-pokedex (propagarId)="getNewPoke($event)"></app-form-pokedex>

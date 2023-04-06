@@ -1,0 +1,18 @@
+<div class="container col-md-4 mt-2">
+  <p>
+    <label for="nameOrId" class="text-white text-bolder">Buscar Pokèmon:</label>
+    <input
+      type="text"
+      placeholder="Introduce Nombre o ID"
+      [(ngModel)]="pokeId"
+      class="form-control"
+    />
+    <button
+      class="btn btn-dark mt-1 col-md-12"
+      type="submit"
+      (click)="sendPokeId()"
+    >
+      Buscar
+    </button>
+  </p>
+</div>

@@ -21,8 +21,6 @@ export class PokedexComponent {
 
   pokemonNameOrId: string = 'pikachu';
 
-  translatethis: string = 'Hola amigo, te quiero mucho';
-
   moves: any[] = [];
   types: any[] = [];
 
@@ -39,10 +37,19 @@ export class PokedexComponent {
     this.getPokemon();
   }
 
+  getfromChild(pokemon: any) {
+    console.log(pokemon);
+  }
+  getNewPoke(pokeId: any) {
+    this.pokemonNameOrId = pokeId;
+    this.getPokemon();
+  }
+
   //Llamada al servicio para obtener nuevo pokemon con valor
   //obtenido desde template, nos suscribimos para fijar un nuevo pokemon
   //que será mostrado en el template por interpolación.
   getPokemon(): void {
+    console.log(this.pokemonNameOrId);
     this.pokeService.getPokemon(this.pokemonNameOrId).subscribe((pokemon) => {
       this.pokemon = pokemon;
       console.log(this.pokemon);

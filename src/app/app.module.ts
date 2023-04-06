@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HectogramToKilogramPipe } from './pipes/hectogram-to-kilogram.pipe';
 import { DecimeterToMetersPipe } from './pipes/decimeter-to-meters.pipe';
+import { FormPokedexComponent } from './components/form-pokedex/form-pokedex.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,9 @@ import { DecimeterToMetersPipe } from './pipes/decimeter-to-meters.pipe';
     PokedexComponent,
     HectogramToKilogramPipe,
     DecimeterToMetersPipe,
+    FormPokedexComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, HttpClientModule, FormsModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent],
 })
