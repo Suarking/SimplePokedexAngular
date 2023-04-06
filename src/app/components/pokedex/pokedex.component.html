@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center align-items-center mt-4">
   <div *ngIf="pokemon">
     <div
-      class="card bg-image border border-3 border-dark"
+      class="card bg-image border border-3 border-secondary"
       style="
         width: 21rem;
 
@@ -10,7 +10,7 @@
     >
       <div class="card-header">
         <ul
-          class="nav nav-tabs bg-dark border border-2 rounded border-primary card-header-tabs"
+          class="nav nav-tabs bg-gradient bg-dark border border-2 rounded border-primary card-header-tabs"
         >
           <li class="nav-item">
             <!--Cambia valor de la variable currentTab cl hacer clic en pestañas-->
@@ -41,26 +41,27 @@
         </ul>
       </div>
       <img
-        class="card-img-top img-rounded border border-5 rounded-circle bg-white"
+        class="card-img-top img-rounded border border-5 rounded-circle mx-auto text-center mt-1 mb-1 w-75 p-3 bg-white"
         [src]="pokemon.sprites.front_default"
         alt="..."
-        style="margin: 5%; max-width: 90%"
         ng
       />
       <!--Dependiendo del valor de currentTab, usando ngIf mostramos un contenido u otro-->
       <div *ngIf="currentTab === 'tab1'">
         <!--CONTENIDO TAB1-->
-        <div class="card-body bg-primary border rounded-3">
+        <div class="card-body bg-primary bg-gradient mx-1 border rounded-3">
           <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
 
           <p class="card-text">ID: {{ pokemon.id }}</p>
         </div>
 
-        <ul class="list-group list-group-flush bg-black">
-          <li class="list-group-item bg-warning text-bold">
+        <ul
+          class="list-group list-group-flush m-1 border border-white bg-black"
+        >
+          <li class="list-group-item bg-warning bg-gradient text-bold">
             <strong>Altura:</strong> {{ pokemon.height | decimeterToMeters }}
           </li>
-          <li class="list-group-item bg-warning">
+          <li class="list-group-item bg-warning bg-gradient">
             <strong>Peso:</strong> {{ pokemon.weight | hectogramToKilogram }}
           </li>
         </ul>
@@ -70,15 +71,17 @@
       </div>
       <div *ngIf="currentTab === 'tab2'">
         <!--CONTENIDO TAB2-->
-        <div class="card-body bg-primary border rounded-3">
+        <div class="card-body mx-1 bg-primary bg-gradient border rounded-3">
           <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
 
           <p class="card-text">ID: {{ pokemon.id }}</p>
         </div>
 
-        <ul class="list-group list-group-flush bg-black">
+        <ul
+          class="list-group mt-1 list-group-flush m-1 border border-white bg-black"
+        >
           <li
-            class="list-group-item bg-warning text-bold"
+            class="list-group-item bg-warning bg-gradient text-bold"
             *ngFor="let type of types"
           >
             <strong>Tipo:</strong> {{ type.type.name | titlecase }}
@@ -89,15 +92,17 @@
         </div>
       </div>
       <div *ngIf="currentTab === 'tab3'">
-        <div class="card-body bg-primary border rounded-3">
+        <div class="card-body bg-primary bg-gradient mx-1 border rounded-3">
           <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
 
           <p class="card-text">ID: {{ pokemon.id }}</p>
         </div>
 
-        <ul class="list-group list-group-flush bg-black">
+        <ul
+          class="list-group m-1 border border-white list-group-flush bg-black"
+        >
           <li
-            class="list-group-item bg-warning text-bold"
+            class="list-group-item bg-warning bg-gradient text-bold"
             *ngFor="let move of moves"
           >
             <strong>Ataque:</strong>

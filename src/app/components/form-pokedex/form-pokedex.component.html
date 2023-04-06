@@ -1,6 +1,8 @@
-<div class="container col-md-4 mt-2">
+<div class="container bg-dark bg-gradient rounded col-md-4 mt-2">
   <p>
-    <label for="nameOrId" class="text-white text-bolder">Buscar Pokèmon:</label>
+    <label for="nameOrId" class="text-white mb-1 fw-bold"
+      >Buscar Pokèmon:</label
+    >
     <input
       type="text"
       placeholder="Introduce Nombre o ID"
@@ -8,7 +10,7 @@
       class="form-control"
     />
     <button
-      class="btn btn-dark mt-1 col-md-12"
+      class="btn btn-primary mt-1 mb-2 fw-bold col-md-12"
       type="submit"
       (click)="sendPokeId()"
     >
